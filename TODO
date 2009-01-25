@@ -1,0 +1,67 @@
+Subito should know:
+
+Show submodules
+---------------
+
+subito show 				-> show tree of all submodules
+subito show --remote			-> show tree of all submodules and remotes
+
+Submodule status
+----------------
+
+subito status 				-> show tree of all submodules with commit status
+subito status --remote			-> show tree of all submodules and remotes with commit status
+
+Commit submodule
+----------------
+subito commit -m "Submodule update"     -> commit submodule and parent git repo (allows -a)
+
+Pull submodule and remotes
+--------------------------
+
+subito pull all 			-> pulls all submodules
+subito pull all --remote		-> pulls all submodules and remotes
+subito pull copy_move 			-> pulls copy_move submodule
+subito pull copy_move --remot		-> pulls copy_move submodule and remotes
+
+Install
+-------
+
+subito install copy_move		-> installs the copy move extension
+subito install netzpirat/copy-move	-> installs the copy move extension
+subito install -p thoughtbot/paperclip  -> installs the paperclip plugin
+subito install -g mini_magick           -> installs the mini_magick gem
+
+copy_move name mapping:
+1. github.user/radiant-copy-move-extension
+2. github.user/radiant-copy_move-extension
+3. github.user/copy_move
+4. radiant/radiant-copy-move-extension
+
+netzpirat/copy-move name mapping:
+1. netzpirat/radiant-copy-move-extension
+2. netzpirat/radiant-copy-move-extension
+3. netzpirat/copy_move
+
+Must resolve http://wiki.github.com/johnmuhl/radiant-ray-extension/extension-dependencies 
+
+Uninstall/Enable/Disable
+------------------------
+
+subito uninstall copy_move
+subito disable copy_move
+subito enable copy_move
+
+Checks also dependencies.
+
+Bundle
+------
+
+subito install bundle			-> Installs from config/extensions.yml
+subito generate bundle			-> Stores configuration into config/extensions.yml 
+
+Radiant
+-------
+subito show radiant versions		-> list radiant tags
+subito install radiant 			-> install radiant edge
+subito install radiant 0.6.9		-> install radiant 0.6.9
