@@ -1,36 +1,28 @@
-require "rubygems"
-require "simpleconsole"
+require 'rubygems'
+require 'thor'
 require 'pathname'
-require "subito/project"
-require "subito/submodule"
+require 'subito/project'
+require 'subito/submodule'
 
-class Controller < SimpleConsole::Controller
+class Subito < Thor
 
-  before_filter :locate_project
-
-  def default
-  end
-
-  def status
-  end
-
-  private
-
-    def locate_project
-      @project = Project.new
+  desc 'show', 'shows all submodules'
+  def show
+    project = Project.new
+    puts project.to_s
+    
+    if project.extensions?
+      puts '+-extension'
+      project.extensions.each do |extension|
+        puts "  +-#{extension.to_s}"
+      end
     end
 
-end
-
-class View < SimpleConsole::View
-
-  def default
-    puts @message
-  end
-
-  def status
-    @project.submodules.each do |s|
-      puts s
+    if project.plugins?
+      puts '+-plugin'
+      project.plugins.each do |plugin|
+        puts "  +-#{plugin.to_s}"
+      end
     end
   end
 

@@ -1,6 +1,6 @@
 class Project
 
-  attr_reader :root, :submodules
+  attr_reader :root, :submodules, :extensions, :plugins
 
   #
   # Initialize a radiant project:
@@ -8,12 +8,22 @@ class Project
   # * Find submodules
   #
   def initialize
-    @root = Project.find_radiant_root(Pathname.new('/Users/michi/Repositories/extranett/vendor/extensions'))
+    @root = Project.find_radiant_root(Pathname.pwd)
     @submodules = find_submodules
+    @extensions = @submodules.select { |s| s.extension? }
+    @plugins =  @submodules.select { |s| s.plugin? }
   end
 
+  def extensions?
+    !@extensions.empty?
+  end
+  
+  def plugins?
+    !@plugins.empty?
+  end
+  
   def to_s
-    @root
+    @root.basename
   end
 
   private
@@ -30,10 +40,12 @@ class Project
       return directory if File.exists?(env_file) &&
                      File.open(env_file).grep(/Radiant::Initializer/)
 
-
-      raise "Not a Radiant project" if directory.root?
-
-      # search parent
+      if directory.root?
+        puts 'Error: Subito has to run inside a Radiant project!'
+        exit 1
+      end
+      
+      # search parent directory
       return Project.find_radiant_root(Pathname.new(directory).parent)
     end
 
@@ -42,7 +54,7 @@ class Project
     #
     def find_submodules
       Dir.chdir(@root) do
-        return Dir.glob('**/.git').reject{|p| p == '.git'}.collect{|p| Submodule.new(p) }
+        return Dir.glob('**/.git').reject{|p| p == '.git'}.collect{|p| Submodule.new(@root + p) }
       end
     end
 
