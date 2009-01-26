@@ -1,31 +1,61 @@
 class Submodule
 
-  attr_reader :root
+  attr_reader :git, :root
   
-  def initialize(root)
-    @root = root.parent
+  #
+  # Initialize a new submodule
+  #
+  # +git+ the git directory of the submodule 
+  #
+  def initialize(git)
+    @git = git
+    @root = git.parent
   end
 
+  #
+  # Is the submodule an installed radiant extension?
+  #
   def extension?
-    type.to_s == 'extensions'
+    type == 'extensions'
   end
-  
+
+  #
+  # Is the submodule a plugin?
+  #
   def plugin?
-    type.to_s == 'plugins'
+    type == 'plugins'
   end
   
-  def gem?
-    type.to_s == 'gems'
-  end
-  
+  #
+  # Is the submodule the Radiant submodule?
+  #
   def radiant?
-    type.to_s == 'radiant'
-  end
-    
-  def type
-    @root.parent.basename
+    type == 'radiant'
   end
   
+  #
+  # Type of the submodule. Is either one of
+  # * extension
+  # * plugin
+  # * radiant
+  #
+  def type
+    @root.parent.basename.to_s
+  end
+  
+  #
+  # Is the submodule installed in the radiant vendor folder
+  #
+  def radiant_vendor?
+    begin
+      @root.parent.parent.parent.basename.to_s == 'radiant'
+    rescue
+    end
+  end  
+  
+  #
+  # Name of the submodule
+  #
   def to_s
     @root.basename
   end
