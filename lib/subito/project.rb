@@ -12,37 +12,50 @@ class Project
   def initialize
     @root = Project.find_rails_root(Pathname.pwd)
     @submodules = find_submodules
-    @extensions = @submodules.select { |s| s.extension? }
+
+    # Rails plugins
     @plugins =  @submodules.select { |s| s.plugin? && !s.radiant_vendor? }
-    @radiant =@submodules.select { |s| s.radiant? }
-    @radiant_plugins = @submodules.select { |s| s.plugin? && s.radiant_vendor? }
+    
+    # Radiant specific
+    if radiant_project?
+      @extensions = @submodules.select { |s| s.extension? }
+      @radiant =@submodules.select { |s| s.radiant? }
+      @radiant_plugins = @submodules.select { |s| s.plugin? && s.radiant_vendor? }
+    end
   end
 
   #
   # Does the project has any extensions as submodule installed?
   #
-  def extensions?
+  def extensions_installed?
     !@extensions.empty?
   end
   
   #
   # Does the project has any plugins as submodule installed?
   #
-  def plugins?
+  def plugins_installed?
     !@plugins.empty?
+  end
+
+  #
+  # Does the project has radiant as submodule installed?
+  #
+  def radiant_installed?
+    !@radiant.empty?
   end
 
   #
   # Does the project has any plugins in vendor/radiant as submodule installed?
   #
-  def radiant_plugins?
+  def radiant_plugins_installed?
     !@radiant_plugins.empty?
   end
     
   #
   # Is it a radiant project
   #
-  def radiant?
+  def radiant_project?
     File.open(@root + ENVIRONMENT).grep(/Radiant::Initializer/) do |line|
       return true
     end
@@ -74,7 +87,7 @@ class Project
       end
       
       # search parent directory
-      return Project.find_radiant_root(Pathname.new(directory).parent)
+      return Project.find_rails_root(Pathname.new(directory).parent)
     end
 
     #
