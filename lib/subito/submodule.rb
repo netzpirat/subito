@@ -17,31 +17,21 @@ class Submodule
   # Is the submodule an installed radiant extension?
   #
   def extension?
-    type == 'extensions'
+    @root.parent.basename.to_s == 'extensions'
   end
 
   #
   # Is the submodule a plugin?
   #
   def plugin?
-    type == 'plugins'
+    @root.parent.basename.to_s == 'plugins'
   end
   
   #
   # Is the submodule the Radiant submodule?
   #
   def radiant?
-    type == 'radiant'
-  end
-  
-  #
-  # Type of the submodule. Is either one of
-  # * extension
-  # * plugin
-  # * radiant
-  #
-  def type
-    @root.parent.basename.to_s
+    @root.basename.to_s == 'radiant'
   end
   
   #

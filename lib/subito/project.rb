@@ -19,7 +19,7 @@ class Project
     # Radiant specific
     if radiant_project?
       @extensions = @submodules.select { |s| s.extension? }
-      @radiant =@submodules.select { |s| s.radiant? }
+      @radiant = @submodules.select { |s| s.radiant? }
       @radiant_plugins = @submodules.select { |s| s.plugin? && s.radiant_vendor? }
     end
   end
