@@ -1,11 +1,3 @@
-Subito should know:
-
-Show submodules
----------------
-
-subito show 				-> show tree of all submodules
-subito show --remote			-> show tree of all submodules and remotes
-
 Submodule status
 ----------------
 
@@ -58,7 +50,6 @@ Bundle
 ------
 
 subito install bundle			-> Installs from config/extensions.yml
-subito generate bundle			-> Stores configuration into config/extensions.yml 
 
 Radiant
 -------
