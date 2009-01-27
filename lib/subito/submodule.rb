@@ -48,8 +48,7 @@ class Submodule
   # Get all remotes
   #
   def remotes
-    #puts File.open(@root + CONFIG).read.scan(/\[remote "([a-zA-z0-9-_]+)"\]\n\s+url\s=\s(.*).git\n/m)
-    {}
+    Hash[File.open(@root + CONFIG).read.scan(/\[remote "([a-zA-z0-9\-_]+)"\]\n\s+url\s=\s([a-zA-Z\-_\/\.:@]+.git)\n/m)]
   end
   
   #
