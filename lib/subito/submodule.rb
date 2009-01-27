@@ -2,10 +2,11 @@ class Submodule
 
   attr_reader :git, :root
   
+  CONFIG = '.git/config'
+  
   #
   # Initialize a new submodule
-  #
-  # +git+ the git directory of the submodule 
+  #   +git+ the git directory of the submodule 
   #
   def initialize(git)
     @git = git
@@ -41,6 +42,14 @@ class Submodule
   #
   def type
     @root.parent.basename.to_s
+  end
+  
+  #
+  # Get all remotes
+  #
+  def remotes
+    #puts File.open(@root + CONFIG).read.scan(/\[remote "([a-zA-z0-9-_]+)"\]\n\s+url\s=\s(.*).git\n/m)
+    {}
   end
   
   #
