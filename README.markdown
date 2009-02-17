@@ -18,7 +18,7 @@ The `show` command has two options:
 bundle
 ------
 
-The `bundle` command can `generate` a bundle from an actual submodule configuration within a project and `install` extensions from the bundle. The bundle file will be written to `config\extensions.yml` in the project root.
+The `bundle` command can `generate` a bundle from an actual submodule configuration within a project. The bundle file will be written to `config\extensions.yml` in the project root.
 
 ### generate
 
