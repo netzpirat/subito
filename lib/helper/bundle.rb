@@ -12,7 +12,7 @@ class Bundle
       file.write("---\n")
       project.extensions.each do |extension|
         
-        puts "Process extension '#{extension.to_s}'" if options.verbose?
+        puts "***".blue + "Process extension ".dark_green + "'#{extension.to_s}'".yellow if options.verbose?
         
         file.write("- name: #{extension.to_s}\n")
         file.write("  hub: #{hub(extension.remotes['origin'])}\n")
@@ -21,7 +21,7 @@ class Bundle
           extension.remotes.each do |name, url|
             remote = hub(url, true)
             file.write("  - remote: #{remote}\n") if name != 'origin'
-            puts "Remote #{remote} registered" if options.verbose?
+            puts "  - Remote".white + "'#{remote}'".cyan + "registered".white if options.verbose?
           end
         end
       

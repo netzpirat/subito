@@ -25,18 +25,17 @@ class Subito < Thor
   # * generate - saves a new bundle from the actual project configuration
   # * install - loads a bundle and installs missing parts
   #
-  desc 'bundle', 'shows all submodules'
+  desc 'bundle', 'generate and install bundle'
   method_options :verbose => :boolean, :remotes => :boolean
   def bundle(action = '')
-    
-    if action == 'save'
-      Bundle.generate(generate.new, options)
+    if action == 'generate'
+      Bundle.generate(Project.new, options)
       
     elsif action == 'install'
       Bundle.install(Project.new, options)
       
     else
-      puts "`bundle' was called incorrectly. Call as `bundle (load|save) [--remotes] [--verbose]'"
+      puts "`bundle' was called incorrectly. Call as `bundle (install|generate) [--remotes] [--verbose]'"
     end
   end
   
