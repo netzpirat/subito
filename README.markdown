@@ -1,7 +1,7 @@
 subito
 ======
 
-`subito` is a Git *submodule inspection tool* and supports you managing your submodules in Rails and Radiant CMS project.
+`subito` is a Git *submodule inspection tool* and helps to manage your Radiant extensions and Rails Plugins.
 
 show
 ----
