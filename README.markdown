@@ -72,31 +72,27 @@ The `bundle generate` command has two options:
 
 #### sample output
 
-Generate a bundle with remotes: `subito bundle generate --remotes --verbose`
+Generate a bundle with remotes: `subito bundle generate --remotes`
 
-	***Process extension 'dav'
-	  - Remote'netzpirat/radiant-dav-extension'registered
-	***Process extension 'gallery'
-	  - Remote'pilu/radiant-gallery'registered
-	  - Remote'netzpirat/radiant-gallery-extension'registered
-	***Process extension 'page_preview'
-	  - Remote'vigetlabs/radiant_page_preview_extension'registered
-	  - Remote'saturnflyer/radiant_page_preview_extension'registered
-	  - Remote'netzpirat/radiant-page-preview-extension'registered
-	***Process extension 'paperclipped'
-	  - Remote'netzpirat/radiant-paperclipped-extension'registered
-	***Process extension 'paperclipped_multisite'
-	  - Remote'netzpirat/radiant-paperclipped-multisite-extension'registered
-	***Process extension 'ray'
-	  - Remote'johnmuhl/radiant-ray-extension'registered
-	  - Remote'netzpirat/radiant-ray-extension'registered
-	***Process extension 'sns'
-	  - Remote'SwankInnovations/radiant-sns-extension'registered
-	  - Remote'MrGossett/radiant-sns-extension'registered
-	  - Remote'netzpirat/radiant-sns-extension'registered
-	***Process extension 'wym_editor_filter'
-	  - Remote'netzpirat/radiant-wym-editor-filter-extension'registered
-	  - Remote'jomz/wymeditor-for-radiant'registered
-	Bundle written to config/extensions.yml
+	---
+	- name: dav
+	  hub: netzpirat
+	- name: gallery
+	  hub: netzpirat
+	  - remote: pilu/radiant-gallery
+	- name: page_preview
+	  hub: netzpirat
+	  - remote: vigetlabs/radiant_page_preview_extension
+	  - remote: saturnflyer/radiant_page_preview_extension
+	- name: ray
+	  hub: netzpirat
+	  - remote: johnmuhl/radiant-ray-extension
+	- name: sns
+	  hub: netzpirat
+	  - remote: SwankInnovations/radiant-sns-extension
+	  - remote: MrGossett/radiant-sns-extension
+	- name: wym_editor_filter
+	  hub: netzpirat
+	  - remote: jomz/wymeditor-for-radiant
 
 As you can see the format is compatible with [Ray's extensions.yml](http://wiki.github.com/johnmuhl/radiant-ray-extension/usage)
