@@ -74,7 +74,7 @@ class Tree
     def self.put_remotes(submodule, indent, options)
       submodule.remotes.each do |name, url|
         if options.verbose?
-          puts "#{indent}+- ".blue + "#{name}".cyan + " -> ".blue + "#{url}".dark_white
+          puts "#{indent}+- ".blue + "#{name}".cyan + "/#{submodule.branch} -> ".blue + "#{url}".dark_white
         else
           puts "#{indent}+- ".blue + "#{name}".cyan
         end

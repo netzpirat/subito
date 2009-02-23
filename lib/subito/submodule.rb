@@ -3,6 +3,7 @@ class Submodule
   attr_reader :git, :root
   
   CONFIG = '.git/config'
+  HEAD = '.git/HEAD'
   
   #
   # Initialize a new submodule
@@ -33,14 +34,7 @@ class Submodule
   def radiant?
     @root.basename.to_s == 'radiant'
   end
-  
-  #
-  # Get all remotes
-  #
-  def remotes
-    Hash[File.open(@root + CONFIG).read.scan(/\[remote "([a-zA-z0-9\-_]+)"\]\n\s+url\s=\s([a-zA-Z\-_\/\.:@]+.git)\n/m)]
-  end
-  
+
   #
   # Is the submodule installed in the radiant vendor folder
   #
@@ -50,7 +44,21 @@ class Submodule
     rescue
     end
   end  
-  
+
+  #
+  # Get all remotes
+  #
+  def remotes
+    @remotes ||= Hash[File.open(@root + CONFIG).read.scan(/\[remote "([a-zA-z0-9\-_]+)"\]\n\s+url\s=\s([a-zA-Z\-_\/\.:@]+.git)\n/m)]
+  end
+
+  #
+  # Get actual branch
+  #
+  def branch
+     @branch ||= File.open(@root + HEAD).read.scan(/ref: refs\/heads\/(.*)/)
+  end
+
   #
   # Name of the submodule
   #
