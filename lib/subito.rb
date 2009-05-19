@@ -6,6 +6,7 @@ require 'subito/submodule'
 require 'helper/tree'
 require 'helper/string'
 require 'helper/bundle'
+require 'helper/fix'
 
 class Subito < Thor
 
@@ -38,5 +39,12 @@ class Subito < Thor
       puts "`bundle' was called incorrectly. Call as `bundle (install|generate) [--remotes] [--verbose]'"
     end
   end
-  
+
+  #
+  # Fixes missing branches
+  #
+  desc 'fix', 'checkout master where no branch is currently selected'
+  def fix
+    Fix.no_branch(Project.new)
+  end
 end

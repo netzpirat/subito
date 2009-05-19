@@ -2,8 +2,8 @@ class Submodule
 
   attr_reader :git, :root
   
-  CONFIG = '.git/config'
-  HEAD = '.git/HEAD'
+  CONFIG = 'config'
+  HEAD = 'HEAD'
   
   #
   # Initialize a new submodule
@@ -49,14 +49,14 @@ class Submodule
   # Get all remotes
   #
   def remotes
-    @remotes ||= Hash[File.open(@root + CONFIG).read.scan(/\[remote "([a-zA-z0-9\-_]+)"\]\n\s+url\s=\s([a-zA-Z\-_\/\.:@]+.git)\n/m)]
+    @remotes ||= Hash[File.open(@git + CONFIG).read.scan(/\[remote "([a-zA-z0-9\-_]+)"\]\n\s+url\s=\s([a-zA-Z\-_\/\.:@]+.git)\n/m)]
   end
 
   #
   # Get actual branch
   #
   def branch
-     @branch ||= File.open(@root + HEAD).read.scan(/ref: refs\/heads\/(.*)/)
+     @branch ||= File.open(@git + HEAD).read.scan(/ref: refs\/heads\/(.*)/)
   end
 
   #
@@ -65,5 +65,13 @@ class Submodule
   def to_s
     @root.basename
   end
-  
+
+  #
+  # Checkout given branch
+  # +branch+ the name of the branch to check out
+  def checkout(branch)
+    Dir.chdir @root do
+      `git checkout #{branch}`
+    end
+  end
 end
