@@ -74,4 +74,24 @@ class Submodule
       `git checkout #{branch}`
     end
   end
+
+  #
+  # Returns the last log entry of the submodule
+  #
+  def last_log
+    Dir.chdir @root do
+      `git log -1 --format=oneline | awk '{ $1=""; print $0 }'`
+    end
+  end
+
+  #
+  # Returns the status of the submodule
+  #
+  def status
+    Dir.chdir @root do
+      status = `git status | head -n 2 | tail -n 1 | sed -e 's/# //g'`
+      
+    end
+  end
+
 end

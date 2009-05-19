@@ -22,6 +22,28 @@ class Subito < Thor
   end
 
   #
+  # Shows a tree of the project submodule and its last log entry
+  # * --verbose prints more information: project type, remote URI's
+  # * --remotes prints the remotes of each subproject its last log entry
+  #
+  desc 'log', 'shows all submodules last log entry'
+  method_options :verbose => :boolean, :remotes => :boolean
+  def log
+    Tree.log(Project.new, options)
+  end
+
+  #
+  # Shows a tree of the project submodule and its status
+  # * --verbose prints more information: project type, remote URI's
+  # * --remotes prints the remotes of each subproject and its status
+  #
+  desc 'status', 'shows all submodule commit status'
+  method_options :verbose => :boolean, :remotes => :boolean
+  def status
+    Tree.status(Project.new, options)
+  end
+
+  #
   # Handles bundles
   # * generate - saves a new bundle from the actual project configuration
   # * install - loads a bundle and installs missing parts

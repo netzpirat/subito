@@ -1,11 +1,30 @@
 class Tree
 
   #
-  # Show the tree representation of the project
+  # Show the tree representation of the project and each submodule last log entry
   #   +project+ the project to visualize
   #   +options+ the command line options
   #
-  def self.show(project, options)
+  def self.log(project, options)
+    show project, options, :log
+  end
+
+  #
+  # Show the tree representation of the project and each submodule status
+  #   +project+ the project to visualize
+  #   +options+ the command line options
+  #
+  def self.status(project, options)
+    show project, options, :status
+  end
+
+  #
+  # Show the tree representation of the project
+  #   +project+ the project to visualize
+  #   +options+ the command line options
+  #   +command+ additional command to visualize in the tree
+  #
+  def self.show(project, options, command = '')
     print "#{project.to_s}".dark_green
     
     # Project type
@@ -25,9 +44,11 @@ class Tree
     if project.extensions_installed?
       puts '+--+'.blue + ' Extensions'.dark_green
       project.extensions.each do |extension|
-        puts "#{connection}  +- ".blue + "#{extension.to_s}".yellow
+        process_command command, extension do
+          print "#{connection}  +- ".blue + "#{extension.to_s}".yellow
+        end
         indent = extension == project.extensions.last ? "#{connection}     " : "#{connection}  |  "
-        self.put_remotes(extension, indent, options) if options.remotes?
+        self.put_remotes(extension, indent, options, command) if options.remotes?
       end
     end
 
@@ -37,9 +58,11 @@ class Tree
     if project.plugins_installed?
       puts '+--+ '.blue + 'Plugins'.dark_green
       project.plugins.each do |plugin|
-        puts "#{connection}  +- ".blue + "#{plugin.to_s}".yellow
+        process_command command, plugin do
+          print "#{connection}  +- ".blue + "#{plugin.to_s}".yellow
+        end
         indent = plugin == project.plugins.last ? "#{connection}     " : "#{connection}  |  "
-        self.put_remotes(plugin, indent, options) if options.remotes?
+        self.put_remotes(plugin, indent, options, command) if options.remotes?
       end
     end
     
@@ -48,41 +71,74 @@ class Tree
       
       # Radiant itself
       puts '+--+ '.blue + 'Radiant'.dark_green
-      self.put_remotes(project.radiant.first, "   |  ", options) if options.remotes?
+      self.put_remotes(project.radiant.first, "   |  ", options, command) if options.remotes?
       
       # Radiant Plugins
       if project.radiant_plugins_installed?
         puts '   +--+ '.blue + 'Plugins'.dark_green
         project.radiant_plugins.each do |plugin|
-          puts "      +- ".blue + "#{plugin.to_s}".yellow
+          process_command command, plugin do
+            print "      +- ".blue + "#{plugin.to_s}".yellow
+          end
           indent = plugin == project.radiant_plugins.last ? "         " : "      |  "
-          self.put_remotes(plugin, indent, options) if options.remotes?
+          self.put_remotes(plugin, indent, options, command) if options.remotes?
         end
       end
     end
     
   end
-  
-  private 
+
+  private
   
     #
     # Prints the submodules remotes
     #   +submodule+ the submodule the display
     #   +indent+ the indent of the output
     #   +options+ the command line options
+    #   +command+ command to process, currently :log and :status is known
     #
-    def self.put_remotes(submodule, indent, options)
+    def self.put_remotes(submodule, indent, options, command)
       submodule.remotes.each do |name, url|
         if options.verbose?
           if submodule.branch.empty?
-            puts "#{indent}+- ".blue + "#{name}".cyan + "/".blue + "NO BRANCH".red + " -> ".blue + "#{url}".dark_white
+            process_command command, submodule do
+              print "#{indent}+- ".blue + "#{name}".cyan + "/".blue + "NO BRANCH".red + " -> ".blue + "#{url}".dark_white
+            end
           else
-            puts "#{indent}+- ".blue + "#{name}".cyan + "/#{submodule.branch} -> ".blue + "#{url}".dark_white
+            process_command command, submodule do
+              print "#{indent}+- ".blue + "#{name}".cyan + "/#{submodule.branch} -> ".blue + "#{url}".dark_white
+            end
           end
         else
-          puts "#{indent}+- ".blue + "#{name}".cyan
+          process_command command, submodule do
+            print "#{indent}+- ".blue + "#{name}".cyan
+          end
         end
       end
-
     end
+
+    #
+    # Process a given command and append its output the the
+    # tree view
+    #   +command+ command to process, currently :log and :status is known
+    #   +submodule+ the submodule to execute the command
+    #
+    def self.process_command(command, submodule)
+      yield
+      case command
+        when :log     
+          puts " -> ".blue + submodule.last_log
+        
+        when :status
+          status = submodule.status
+          if status =~ /nothing/
+            puts ""
+          else 
+            puts " -> ".blue + submodule.status.sub("updated:", "updated.")
+          end
+
+        else puts ""
+      end
+    end
+
 end
