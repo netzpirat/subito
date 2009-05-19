@@ -64,55 +64,55 @@ The `status` command visualizes the submodules tree and each modules status:
 
 ### sample output
 
-extranett
-+--+ Extensions
-|  +- admin_breadcrumbs
-|  +- application_theme
-|  +- blog
-|  +- change_author
-|  +- comments
-|  +- conditional_tags
-|  +- copy_move -> Changed but not updated.
-|  +- dashboard -> Changed but not updated.
-|  +- dav
-|  +- gallery -> Changed but not updated.
-|  +- gallery_multisite -> Changed but not updated.
-|  +- help
-|  +- import_export
-|  +- index_page
-|  +- multi_site -> Changed but not updated.
-|  +- navigation_tags
-|  +- page_preview
-|  +- paginate
-|  +- paperclipped -> Your branch is ahead of 'origin/master' by 9 commits.
-|  +- paperclipped_multisite
-|  +- ray
-|  +- scoped_admin
-|  +- search
-|  +- search_multi_site
-|  +- seo_help
-|  +- settings
-|  +- share_layouts -> Changed but not updated.
-|  +- sibling_tags
-|  +- site_watcher
-|  +- sns -> Changed but not updated.
-|  +- sns_minifier
-|  +- sns_multisite
-|  +- sns_sass_filter
-|  +- tags
-|  +- wordpress_migrator
-|  +- wym_editor_filter -> Your branch is ahead of 'origin/master' by 8 commits.
-+--+ Plugins
-|  +- has_many_polymorphs
-|  +- attachment_fu
-|  +- exceptional
-|  +- rpm
-|  +- will_paginate
-+--+ Radiant
-   +--+ Plugins
-      +- dataset -> Your branch is behind 'origin/master' by 21 commits, and can be fast-forwarded.
-      +- spec_integration -> Your branch is behind 'origin/master' by 6 commits, and can be fast-forwarded.
-      +- vizres -> Your branch is behind 'origin/master' by 5 commits, and can be fast-forwarded.
+	extranett
+	+--+ Extensions
+	|  +- admin_breadcrumbs
+	|  +- application_theme
+	|  +- blog
+	|  +- change_author
+	|  +- comments
+	|  +- conditional_tags
+	|  +- copy_move -> Changed but not updated.
+	|  +- dashboard -> Changed but not updated.
+	|  +- dav
+	|  +- gallery -> Changed but not updated.
+	|  +- gallery_multisite -> Changed but not updated.
+	|  +- help
+	|  +- import_export
+	|  +- index_page
+	|  +- multi_site -> Changed but not updated.
+	|  +- navigation_tags
+	|  +- page_preview
+	|  +- paginate
+	|  +- paperclipped -> Your branch is ahead of 'origin/master' by 9 commits.
+	|  +- paperclipped_multisite
+	|  +- ray
+	|  +- scoped_admin
+	|  +- search
+	|  +- search_multi_site
+	|  +- seo_help
+	|  +- settings
+	|  +- share_layouts -> Changed but not updated.
+	|  +- sibling_tags
+	|  +- site_watcher
+	|  +- sns -> Changed but not updated.
+	|  +- sns_minifier
+	|  +- sns_multisite
+	|  +- sns_sass_filter
+	|  +- tags
+	|  +- wordpress_migrator
+	|  +- wym_editor_filter -> Your branch is ahead of 'origin/master' by 8 commits.
+	+--+ Plugins
+	|  +- has_many_polymorphs
+	|  +- attachment_fu
+	|  +- exceptional
+	|  +- rpm
+	|  +- will_paginate
+	+--+ Radiant
+	   +--+ Plugins
+	      +- dataset -> Your branch is behind 'origin/master' by 21 commits, and can be fast-forwarded.
+	      +- spec_integration -> Your branch is behind 'origin/master' by 6 commits, and can be fast-forwarded.
+	      +- vizres -> Your branch is behind 'origin/master' by 5 commits, and can be fast-forwarded.
       
 log
 ----
@@ -129,55 +129,55 @@ The `log` command has one option:
 
 Show a project submodule logs: `subito log`
 
-extranett
-+--+ Extensions
-|  +- admin_breadcrumbs ->  Changed deprecated page_edit_path(page) to edit_admin_page_path(page)
-|  +- application_theme ->  updated docs
-|  +- blog ->  configurable home location for blog posts when dashboard is installed
-|  +- change_author ->  properly find the current_user
-|  +- comments ->  Use application_controller in Radiant 0.8.0 due upgrade to Rails 2.3.2
-|  +- conditional_tags ->  Ready for v0.4
-|  +- copy_move ->  The Copy Move Extension is now aware of multi site installations
-|  +- dashboard ->  Merge branch 'master' of git://github.com/saturnflyer/radiant-dashboard-extension
-|  +- dav ->  Don't use tempfile 'cause it generates ugly file names.
-|  +- gallery ->  Merge branch 'master' of git://github.com/pilu/radiant-gallery
-|  +- gallery_multisite ->  Fixed wrong call to import path without a site
-|  +- help ->  Use application_controller in Radiant 0.8.0 due upgrade to Rails 2.3.2
-|  +- import_export ->  Updated for Edge. Radiant::ExtensionsMeta no longer extant.
-|  +- index_page ->  avoiding siteLanguage ext. error..
-|  +- multi_site ->  Site.several? causes a 'ArgumentError (A copy of MultiSite::ScopedValidation has been removed from the module tree but is still active)' in development mode
-|  +- navigation_tags ->  including TagHelper
-|  +- page_preview ->  Use application_controller in Radiant 0.8.0 due upgrade to Rails 2.3.2
-|  +- paginate ->  Merge branch 'master' of git://github.com/saturnflyer/radiant-paginate-extension
-|  +- paperclipped ->  Merge branch 'master' of git://github.com/kbingman/paperclipped
-|  +- paperclipped_multisite ->  Merge branch 'master' of git://github.com/spanner/radiant-paperclipped_multisite-extension
-|  +- ray ->  fix broken output message on install, when there was no exact match but some possible matches. i.e. ray:i name=calendar
-|  +- scoped_admin ->  Merge branch 'master' of git://github.com/spanner/radiant-scoped-admin-extension
-|  +- search ->  spec
-|  +- search_multi_site ->  Initial import
-|  +- seo_help ->  added inherit to r:meta
-|  +- settings ->  Converted settings description to a text area, and added a few styling improvements.
-|  +- share_layouts ->  Prevent <r:date /> from breaking when using a dummy page.
-|  +- sibling_tags ->  Switched README format to markdown.
-|  +- site_watcher ->  Fix nil reference when site has no 404 page
-|  +- sns ->  Updated specs (and some application code) for 0.7.
-|  +- sns_minifier ->  A few minor changes to be compatible with radiant/radiant-sns-extension. 1) Rename app/views/admin/text_asset app/views/admin/text_assets, 2) In sns_minifier_extension.rb change admin.text_asset.edit.add to admin.text_assets.edit.add. Pretty simple just keeping up with the pluralizations. '
-|  +- sns_multisite ->  Pluralize admin ui for text asset
-|  +- sns_sass_filter ->  Updated descriptions for v0.3
-|  +- tags ->  Updated has_many_polymorphs
-|  +- wordpress_migrator ->  extra fixes
-|  +- wym_editor_filter ->  Merge branch 'master' of git://github.com/netzpirat/radiant-wym-editor-filter-extension
-+--+ Plugins
-|  +- has_many_polymorphs ->  Changelog.
-|  +- attachment_fu ->  ruby 1.9 syntax compatibility fixes
-|  +- exceptional ->  Change my email address
-|  +- rpm ->  Agent release 2.8.11
-|  +- will_paginate ->  release v2.3.8 for Rails 2.3
-+--+ Radiant
-   +--+ Plugins
-      +- dataset ->  name_to_sym for naming models
-      +- spec_integration ->  Don't alias rescue_action_without_fast_errors...instead call it directly when in an integration example
-      +- vizres ->  updated readme
+	extranett
+	+--+ Extensions
+	|  +- admin_breadcrumbs ->  Changed deprecated page_edit_path(page) to edit_admin_page_path(page)
+	|  +- application_theme ->  updated docs
+	|  +- blog ->  configurable home location for blog posts when dashboard is installed
+	|  +- change_author ->  properly find the current_user
+	|  +- comments ->  Use application_controller in Radiant 0.8.0 due upgrade to Rails 2.3.2
+	|  +- conditional_tags ->  Ready for v0.4
+	|  +- copy_move ->  The Copy Move Extension is now aware of multi site installations
+	|  +- dashboard ->  Merge branch 'master' of git://github.com/saturnflyer/radiant-dashboard-extension
+	|  +- dav ->  Don't use tempfile 'cause it generates ugly file names.
+	|  +- gallery ->  Merge branch 'master' of git://github.com/pilu/radiant-gallery
+	|  +- gallery_multisite ->  Fixed wrong call to import path without a site
+	|  +- help ->  Use application_controller in Radiant 0.8.0 due upgrade to Rails 2.3.2
+	|  +- import_export ->  Updated for Edge. Radiant::ExtensionsMeta no longer extant.
+	|  +- index_page ->  avoiding siteLanguage ext. error..
+	|  +- multi_site ->  Site.several? causes a 'ArgumentError (A copy of MultiSite::ScopedValidation has been removed from the module tree but is still active)' in development mode
+	|  +- navigation_tags ->  including TagHelper
+	|  +- page_preview ->  Use application_controller in Radiant 0.8.0 due upgrade to Rails 2.3.2
+	|  +- paginate ->  Merge branch 'master' of git://github.com/saturnflyer/radiant-paginate-extension
+	|  +- paperclipped ->  Merge branch 'master' of git://github.com/kbingman/paperclipped
+	|  +- paperclipped_multisite ->  Merge branch 'master' of git://github.com/spanner/radiant-paperclipped_multisite-extension
+	|  +- ray ->  fix broken output message on install, when there was no exact match but some possible matches. i.e. ray:i name=calendar
+	|  +- scoped_admin ->  Merge branch 'master' of git://github.com/spanner/radiant-scoped-admin-extension
+	|  +- search ->  spec
+	|  +- search_multi_site ->  Initial import
+	|  +- seo_help ->  added inherit to r:meta
+	|  +- settings ->  Converted settings description to a text area, and added a few styling improvements.
+	|  +- share_layouts ->  Prevent <r:date /> from breaking when using a dummy page.
+	|  +- sibling_tags ->  Switched README format to markdown.
+	|  +- site_watcher ->  Fix nil reference when site has no 404 page
+	|  +- sns ->  Updated specs (and some application code) for 0.7.
+	|  +- sns_minifier ->  A few minor changes to be compatible with radiant/radiant-sns-extension. 1) Rename app/views/admin/text_asset app/views/admin/text_assets, 2) In sns_minifier_extension.rb change admin.text_asset.edit.add to admin.text_assets.edit.add. Pretty simple just keeping up with the pluralizations. '
+	|  +- sns_multisite ->  Pluralize admin ui for text asset
+	|  +- sns_sass_filter ->  Updated descriptions for v0.3
+	|  +- tags ->  Updated has_many_polymorphs
+	|  +- wordpress_migrator ->  extra fixes
+	|  +- wym_editor_filter ->  Merge branch 'master' of git://github.com/netzpirat/radiant-wym-editor-filter-extension
+	+--+ Plugins
+	|  +- has_many_polymorphs ->  Changelog.
+	|  +- attachment_fu ->  ruby 1.9 syntax compatibility fixes
+	|  +- exceptional ->  Change my email address
+	|  +- rpm ->  Agent release 2.8.11
+	|  +- will_paginate ->  release v2.3.8 for Rails 2.3
+	+--+ Radiant
+	   +--+ Plugins
+	      +- dataset ->  name_to_sym for naming models
+	      +- spec_integration ->  Don't alias rescue_action_without_fast_errors...instead call it directly when in an integration example
+	      +- vizres ->  updated readme
 
 bundle
 ------
