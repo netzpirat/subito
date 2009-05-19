@@ -58,7 +58,7 @@ Show a verbose project structure with remotes: `subito show --remotes --verbose`
 status
 ------
 
-The `status` command visualizes the submodules status:
+The `status` command visualizes the submodules tree and each modules status:
 
 	subito status
 
@@ -117,11 +117,11 @@ extranett
 log
 ----
 
-The `log` command visualizes the submodule tree:
+The `log` command visualizes the submodule tree and each modules last log entry:
 
 	subito log
 
-The `log` command has two options:
+The `log` command has one option:
 
 * --remotes adds submodule remotes to the view
 
