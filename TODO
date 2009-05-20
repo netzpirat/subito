@@ -1,9 +1,3 @@
-Submodule status
-----------------
-
-subito status 				-> show tree of all submodules with commit status
-subito status --remote			-> show tree of all submodules and remotes with commit status
-
 Commit submodule
 ----------------
 subito commit -m "Submodule update"     -> commit submodule and parent git repo (allows -a)
