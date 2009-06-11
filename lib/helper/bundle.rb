@@ -40,15 +40,18 @@ class Bundle
   #
   def self.install(project, options)
     bundle = YAML::load_file(project.root + BUNDLE)
+    installed = project.extensions.map{|e| e.root.basename.to_s }
+
     bundle.each do |extension|
       name = extension['name']
-      if not project.extensions.map{|e| e.to_s }.include?(name)
-        puts "TODO: Installing" + name
+      if not installed.include?(name)
+        puts "TODO: Installing " + name
       end
       if extension['remotes']
         extension['remotes'].each do |remote|
           Dir.chdir(project.root + "vendor/extensions" + name) do
-            puts "TODO: Register " + remote
+            puts "Registering #{remote} remote for #{name}" if options.verbose?
+            `git remote add #{remote} git://github.com/#{remote}/#{name}`
           end
         end
       end
