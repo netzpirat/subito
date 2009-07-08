@@ -51,7 +51,7 @@ class Bundle
         extension['remotes'].each do |remote|
           Dir.chdir(project.root + "vendor/extensions" + name) do
             puts "Registering #{remote} remote for #{name}" if options.verbose?
-            `git remote add #{remote} git://github.com/#{remote}/#{name}`
+            `git remote add #{remote} git://github.com/#{remote}/#{name}.git`
           end
         end
       end
